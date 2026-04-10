@@ -1,0 +1,44 @@
+<!-- src/App.vue -->
+<template>
+  <div id="app">
+    <h1>Loja Virtual Q</h1>
+    
+    <!-- Lista de Produtos para Adicionar -->
+    <div class="products">
+      <div v-for="product in products" :key="product.id" class="product-item">
+        {{ product.name }} - R$ {{ product.price }}
+        <button @click="addProduct(product)">Adicionar ao Carrinho</button>
+      </div>
+    </div>
+
+    <hr>
+    
+    <!-- Componente do Carrinho -->
+    <ShoppingCart />
+  </div>
+</template>
+
+<script>
+import ShoppingCart from './components/ShoppingCart.vue';
+import { mapActions, mapState } from 'vuex';
+
+export default {
+  components: {
+    ShoppingCart
+  },
+  computed: {
+    ...mapState(['products'])
+  },
+  methods: {
+    // Mapeia a ação do Vuex
+    ...mapActions(['addToCart']),
+    addProduct(product) {
+      this.addToCart(product);
+    }
+  }
+};
+</script>
+
+<style>
+.product-item { margin: 10px; padding: 10px; border: 1px solid #ccc; }
+</style>
