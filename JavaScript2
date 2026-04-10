@@ -1,0 +1,11 @@
+// src/main.js
+import Vue from 'vue';
+import App from './App.vue';
+import store from './store'; // Importa a store configurada
+
+Vue.config.productionTip = false;
+
+new Vue({
+  store, // Integra a store aqui
+  render: h => h(App),
+}).$mount('#app');
