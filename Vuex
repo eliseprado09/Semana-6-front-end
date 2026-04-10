@@ -1,0 +1,25 @@
+<!-- src/components/ShoppingCart.vue -->
+<template>
+  <div>
+    <h2>Carrinho</h2>
+    <p>Itens no carrinho: {{ cartItemCount }}</p>
+    <ul>
+      <li v-for="item in cart" :key="item.id">
+        {{ item.name }} - R$ {{ item.price }}
+      </li>
+    </ul>
+    <h3>Total: R$ {{ cartTotal }}</h3>
+  </div>
+</template>
+
+<script>
+import { mapGetters, mapState } from 'vuex';
+
+export default {
+  computed: {
+    // Mapeia o estado e os getters do Vuex
+    ...mapState(['cart']),
+    ...mapGetters(['cartItemCount', 'cartTotal'])
+  }
+};
+</script>
